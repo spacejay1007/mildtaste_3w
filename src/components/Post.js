@@ -9,15 +9,15 @@ const Post = (props)=> {
     return(
         <React.Fragment>
             <Grid>
-                <Grid is_flex>
+                <Grid is_flex padding="16px">
                     <Image shape="circle" src={props.src}></Image>
                     <Text bold>{props.user_info.user_name}</Text>
                     <Text>{props.insert_dt}</Text> 
                 </Grid> 
-                <Grid>
+                <Grid padding="16px">
                     <Text>{props.contents}</Text>
                 </Grid>
-                <Grid>
+                <Grid padding="16px">
                     <Image shape="square" src={props.src}></Image>
                 </Grid>
                 <Grid>

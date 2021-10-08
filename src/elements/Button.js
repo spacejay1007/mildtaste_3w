@@ -5,36 +5,37 @@ import Text from "./Text";
 import Grid from "./Grid";
 
 const Button = (props) => {
-    const {text,padding,width,_onChange,children} = props;
+    const {text,width,_onClick,children,margin} = props;
     const styles = {
         text:text,
-        padding:padding,
         width:width,
+        margin:margin,
     }
     return(
         <React.Fragment>
             <Grid>
-               <LogBtn {...styles} onClick={_onChange}>{text? text: children}</LogBtn> 
+               <LogBtn {...styles} onClick={_onClick}>{text? text: children}</LogBtn> 
             </Grid>
         </React.Fragment>       
     )
 }
 
 Button.defaultProps={
-    text:"btn_text",
-    padding:"10px",
-    _onChange: ()=>{},
+    text:false,
+    _onClick: ()=>{},
     children:null,
     width:"100%",
+    margin:false,
 }
 
 const LogBtn = styled.button`
     background-color: #6495ED;
     border:1px solid #00008B;
     width:${(props) => props.width};
-    padding:12px 2px;
+    padding:12px 0px;
     font-weight:bold;
     box-sizing:border-box;
+    margin:${(props) => (props.margin? `margin: ${props.margin};` : '')}
 
 `;
 

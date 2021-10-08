@@ -1,10 +1,13 @@
 //cookie get
 const getCookie = (name) => {
-    let value = document.cookie;
-    let parts = value.split(`; + ${name}=`)
+    let value = ";"+document.cookie;
+    let parts = value.split(`; ${name}=`)
 
     console.log(parts);
 
+    if(parts.length ===2 ){
+        return parts.pop().split(";").shift();
+    }
 };
 // cookie Create
 const setCookie = (name, value, exp=5) => {
@@ -15,6 +18,8 @@ const setCookie = (name, value, exp=5) => {
 };  
 //cookie delete
 const deleteCookie = (name) => {
+    // let date = new Date();
+
     document.cookie= name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
 };
 

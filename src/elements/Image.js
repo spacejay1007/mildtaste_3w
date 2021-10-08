@@ -50,7 +50,6 @@ const ImageOutter=styled.div`
 `;
 
 const SquareImage = styled.div`
-    width:75%;
     padding-top:80%;
     overflow:hidden;
     position:relative;

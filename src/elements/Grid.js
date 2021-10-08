@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Grid = (props) => {
-    const {is_flex, width, padding, margin, bg, children} = props;
+    const {is_flex, width, padding, margin, bg, children,center} = props;
 
     const styles ={
         is_flex:is_flex,
@@ -10,6 +10,7 @@ const Grid = (props) => {
         padding:padding, 
         margin:margin, 
         bg:bg,
+        center:center,
     }
     return(
         <React.Fragment>
@@ -26,18 +27,24 @@ Grid.defaultProps = {
   margin: false,
   bg: false,
   children:null,
+  center:false,
 };
 
 const GridBox = styled.div`
+children:null;
 ${(props) =>
     (props.is_flex? 
     `display:flex; align-items:center; justify-content:space-between;`
 : "")}
-${(props) => props.width} ;
-${(props) => (props.padding ? `padding:${props.padding};` : "")}
-${(props) => (props.margin? `margin:${props.margin};` : "")}
-${(props) => (props.bg? `background-color:${props.bg};` :"")} 
+width:${(props) => props.width} ;
+padding:${(props) => props.padding ? `padding:${props.padding};` : ""}
+margin:${(props) => props.margin? `margin:${props.margin};` : ""}
+${(props) => props.bg? `background-color:${props.bg};` :""} 
 height:100%;
 box-sizing:border-box;
+${(props) => props.center? `text-align:center`:""}
 `;
+
+
+
 export default Grid;

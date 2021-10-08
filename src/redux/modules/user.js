@@ -1,7 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import {produce} from "immer";
 import { getCookie,setCookie,deleteCookie } from "../../shared/Cookie";
-
+import {auth} from "../../shared/firebase"
 
 
 //Action
@@ -32,6 +32,44 @@ const loginAction = (user) => {
         history.push("/");
     }
 }
+const signupFB = (id, pwd, user_name) => {
+    return function(dispatch, getstate, {history}) {
+    auth
+      .createUserWithEmailAndPassword(id, pwd)
+      .then((user) => {
+        console.log(user);
+
+        auth.currentUser
+          .updateProfile({
+            displayName: user_name,
+          })
+          .then(() => {
+            dispatch(
+              setUser({
+                user_name: user_name,
+                id: id,
+                user_profile: "",
+                uid: user.user.uid,
+              })
+            );
+            history.push("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+        // Signed in
+        // ...
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        console.log(errorCode, errorMessage);
+        // ..
+      });
+  };
+};
 
 
 
@@ -66,5 +104,6 @@ const actionCreators ={
     getUser,
     loginAction,
     setUser,
+    signupFB,
 }
 export {actionCreators};
